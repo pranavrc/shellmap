@@ -40,11 +40,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Chain scripts.')
     parser.add_argument('command', type=PosArg, nargs="+")
     parser.add_argument('--run', dest='run', action="store_true")
+    parser.add_argument('--print', dest='printout', action="store_true")
 
     args = parser.parse_args()
 
     final_commands = PosArgMap(args.command[0], args.command[1:])
     to_run = final_commands.resolve()
+
+    if args.printout:
+        print '\n'.join(to_run)
 
     if args.run:
         for each_command in to_run:
