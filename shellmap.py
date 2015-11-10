@@ -69,6 +69,5 @@ if __name__ == "__main__":
         print '\n'.join(to_run)
 
     if args.run:
-        for each_command in to_run:
-            sp.call(to_run, shell=True)
+        sp.call(' ; '.join(to_run), shell=True)
 
