@@ -3,29 +3,30 @@
 import argparse
 import subprocess as sp
 import sys
+import re
 
 class PosArgMap:
     def __init__(self, commands, paramlists):
         self.commands = commands
         self.paramlists = paramlists
 
-    def map_interpolate(self, command, params):
-        return map(lambda param: command.replace('$@', param, 1), params)
+    def map_interpolate(self, command, params, position):
+        return map(lambda param: command.replace('$' + str(position) + '@', param), params)
 
-    def map_across_commands(self, commands, params):
+    def map_across_commands(self, commands, params, position):
         flatlist = []
         map(lambda command:
-            flatlist.extend(self.map_interpolate(command, params)),
+            flatlist.extend(self.map_interpolate(command, params, position)),
             commands)
         return flatlist
 
-    def fold_interpolate(self, commands, paramlists):
-        if not paramlists:
+    def fold_interpolate(self, commands, paramlists, position=1):
+        if not re.search('\$\d+\@', commands[0]):
             return commands
         else:
-            return self.fold_interpolate(self.map_across_commands(commands,
-                                                                  paramlists[0]),
-                                         paramlists[1:])
+            return self.fold_interpolate(self.map_across_commands(
+                commands, paramlists[0], position),
+                paramlists[1:], position + 1)
 
     def resolve(self):
         return self.fold_interpolate(self.commands, self.paramlists)
