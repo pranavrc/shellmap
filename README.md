@@ -19,6 +19,19 @@ optional arguments:
   -h, --help  show this help message and exit
   --print     Print the output commands
   --run       Run the output commands
+$ python shellmap.py "echo \$1@ \$2@ \$1@" "%ls" "is,is not" --print
+echo LICENSE is LICENSE
+echo LICENSE is not LICENSE
+echo README.md is README.md
+echo README.md is not README.md
+echo shellmap.py is shellmap.py
+echo shellmap.py is not shellmap.py
+$ python shellmap.py "echo \$1@ \$2@ \$1@" "%ls" "is,is not" --run
+LICENSE is LICENSE
+LICENSE is not LICENSE
+README.md is README.md
+README.md is not README.md
+shellmap.py is shellmap.py
 ```
 
 ### Format
@@ -35,7 +48,7 @@ month_reports/
     Feb_2015.txt
 ```
 
-We wish to create a new directory *final_reports*, and make new files for each combination of the dates, months and one of *pre*, *curr*, and *post*, in the format DD_MMM_YYYY_[pre|curr|post].txt. The directory structure needs to be like this:
+We wish to create a new directory *final_reports*, and make new files for each combination of the dates, months and one of *pre*, *curr*, and *post*, in the format DD_MMM_YYYY_[pre|curr|post].txt. The final directory structure needs to be like this:
 
 ```
 month_reports/
@@ -66,7 +79,7 @@ month_reports/
     Feb_2015.txt
 ```
 
-We have three positional arguments, one for the date, one for the month_year, and one for [pre|curr|post]. First we'd like to check the output commands to see what's going to run. So here's what we do:
+We have three positional arguments, one for the date, one for the month_year, and one for [pre|curr|post]. First we'd like to check the output commands to see what's going to run. So here's what we do, using the format `\$N@` for positional arguments:
 
 ```
 $ mkdir final_reports && cd $_
@@ -174,5 +187,5 @@ optional arguments:
   --run       Run the output commands
 ```
 
-If you want the script to be globally executable, put it somewhere in your `$PATH`.
+To be globally executable, the script needs to be in the `$PATH`.
 
