@@ -35,7 +35,7 @@ shellmap.py is shellmap.py
 shellmap.py is not shellmap.py
 ```
 
-### Format
+### Example
 
 Say we have the following directory structure:
 
