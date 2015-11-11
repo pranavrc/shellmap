@@ -49,7 +49,7 @@ month_reports/
     Feb_2015.txt
 ```
 
-We wish to create a new directory *final_reports*, and make new files for each combination of the dates, months and one of *pre*, *curr*, and *post*, in the format DD_MMM_YYYY_[pre|curr|post].txt. The final directory structure needs to be like this:
+We wish to create a new directory *final_reports*, and make new files for each permutation of the dates, months and one of *pre*, *curr*, and *post*, in the format DD_MMM_YYYY_[pre|curr|post].txt. The final directory structure needs to be like this:
 
 ```
 month_reports/
