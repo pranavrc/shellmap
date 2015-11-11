@@ -32,6 +32,7 @@ LICENSE is not LICENSE
 README.md is README.md
 README.md is not README.md
 shellmap.py is shellmap.py
+shellmap.py is not shellmap.py
 ```
 
 ### Format
